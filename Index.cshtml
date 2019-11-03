@@ -1,0 +1,68 @@
+﻿@page
+@model HeadCount.Pages.Employees.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<h1>Employees</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+    </div>
+</form>
+
+<section>
+    <h1>@Model.OpenCount</h1>
+    <h1>@Model.ClosedCount</h1>
+</section>
+<form>
+    
+</form>
+ 
+        <section class="grid-conainter">
+            
+            @foreach(var item in Model.Employee)
+            {
+
+            <aside class="grid-item">
+                <a asp-page="./Edit" asp-route-id=".EmpId">Edit</a> |
+                <a asp-page="./Details" asp-route-id=".EmpId">Details</a> |
+                <a asp-page="./Delete" asp-route-id=".EmpId">Delete</a>
+            </aside>
+
+            }
+
+        </section>
+        
+    
+
+
+
+    
+
+
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Employee)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-default ">
+    Previous
+</a>
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Employee)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-default ">
+    Next
+</a>
